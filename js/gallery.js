@@ -81,6 +81,7 @@ function addElements(images) {
     listElement.append(link);
     link.addEventListener("click", function (event) {
       event.preventDefault();
+      openLightbox(original, description)
     } )
 
     const image = document.createElement("img")
@@ -92,4 +93,21 @@ function addElements(images) {
   }
 }
 
-addElements(images);
+
+function openLightbox(imageSrc, imageAlt) {
+  const lightbox = basicLightbox.create(
+    `<img src="${imageSrc}" alt="${imageAlt}" style="max-width: 100%; max-height: 100%;">`
+    , { closable:false});
+  
+  
+  lightbox.show();
+  
+  document.addEventListener("keydown", function closeLightbox(event) {
+  if (event.key === "Escape") {
+ lightbox.close();
+    document.removeEventListener("keydown", closeLightbox);
+  }
+})
+}
+
+  addElements(images);
