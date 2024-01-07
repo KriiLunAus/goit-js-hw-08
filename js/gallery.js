@@ -67,3 +67,29 @@
 
 
 
+const galleryList = document.querySelector(".gallery");
+function addElements(images) {
+  for (const { preview, original, description } of images) {
+    
+    const listElement = document.createElement("li");
+    listElement.classList.add("gallery-item");
+    galleryList.append(listElement);
+    
+    const link = document.createElement("a");
+    link.classList.add("gallery-link");
+    link.setAttribute("href", original);
+    listElement.append(link);
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+    } )
+
+    const image = document.createElement("img")
+    image.classList.add("gallery-image");
+    image.setAttribute("src", preview);
+    image.setAttribute("alt", description);
+    image.dataset.source = original;
+    link.append(image);
+  }
+}
+
+addElements(images);
