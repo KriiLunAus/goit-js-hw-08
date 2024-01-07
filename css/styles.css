@@ -11,6 +11,11 @@
 .gallery-image {
   width: 360px;
   height: 300px;
+  transition: all 250ms ease-in-out;
+}
+
+.gallery-image:hover {
+  transform: scale(1.1);
 }
 
 body {
